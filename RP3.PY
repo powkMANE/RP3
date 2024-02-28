@@ -4,7 +4,7 @@ import re
 import xlsxwriter
 from datetime import datetime
 
-url = 'https://malopolskie-media.info/playlista/polskie-radio-trojka/2024-02-26/0/24.html'
+url = 'https://malopolskie-media.info/playlista/polskie-radio-trojka/2024-02-27/0/24.html'
 songs_list = []
 def link_extractor(url):
 #    url = input("Provide the link to the OST: ")
