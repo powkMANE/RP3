@@ -2,9 +2,18 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import xlsxwriter
-from datetime import datetime
+from datetime import datetime, timedelta
 
-url = 'https://malopolskie-media.info/playlista/polskie-radio-trojka/2024-02-27/0/24.html'
+#datetoday = datetime.today().strftime('%Y-%m-%d') - timedelta(days=1)
+datetoday = datetime.today() - timedelta(days=1)
+datetoday = datetoday.strftime('%Y-%m-%d')
+
+ts = datetime.today().strftime('%Y-%m-%d(%H-%M-%S)')
+
+#url = 'https://malopolskie-media.info/playlista/polskie-radio-trojka/2024-02-27/0/24.html'
+url = 'https://malopolskie-media.info/playlista/polskie-radio-trojka/' + str(datetoday) + '/0/24.html'
+
+
 songs_list = []
 def link_extractor(url):
 #    url = input("Provide the link to the OST: ")
@@ -22,8 +31,6 @@ for song in songs_list:
     if '-' in song and '\n' not in song:
         only_songs.append(song)
 
-dt = datetime.now()
-ts = datetime.timestamp(dt)
 
 WBName = 'Songs_' + str(ts) + '.xlsx'
 workbook = xlsxwriter.Workbook(WBName)
@@ -35,7 +42,6 @@ for song in only_songs:
     worksheet.write(row, col, song)
     row += 1
 workbook.close()
-
 
 
 
